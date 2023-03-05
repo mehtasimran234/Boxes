@@ -2,17 +2,7 @@ import React from "react";
 import boxes from "./boxes"
 import Box from "./Box"
 
-function App() {
-        /**
-         * Challenge: use setSquares to update the
-         * correct square in the array.
-         * 
-         * Make sure not to directly modify state!
-         * 
-         * Hint: look back at the lesson on updating arrays
-         * in state if you need a reminder on how to do this
-         */
-
+export default function App() {
   const [squares, setSquares] = React.useState(boxes)
 
   function toggle(id) {
@@ -25,7 +15,7 @@ function App() {
 
   const items = squares.map(square => {
     return (
-      <Box key={square.id} id={square.id} on={square.on} toggle={toggle} />
+      <Box key={square.id} on={square.on} toggle={() => toggle(square.id)} />
     )
   })
 
@@ -35,5 +25,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
