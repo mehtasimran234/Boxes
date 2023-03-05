@@ -3,25 +3,29 @@ import boxes from "./boxes"
 import Box from "./Box"
 
 function App() {
+        /**
+         * Challenge: use setSquares to update the
+         * correct square in the array.
+         * 
+         * Make sure not to directly modify state!
+         * 
+         * Hint: look back at the lesson on updating arrays
+         * in state if you need a reminder on how to do this
+         */
 
-    /**
-     * Challenge part 3.2:
-     * Create a toggle() function that logs
-     * "clicked!" to the console
-     * 
-     * Pass that function down to each of the Box components
-     * and set it up so when they get clicked it runs the function
-     */
+  const [squares, setSquares] = React.useState(boxes)
 
-  const [squareArray, setSquareArray] = React.useState(boxes)
-
-  function toggle() {
-    console.log("Clicked!!")
+  function toggle(id) {
+    setSquares(squares => {
+      return squares.map(square => {
+        return square.id === id ? {...square, on: !square.on} : square
+      })
+    })
   }
 
-  const items = squareArray.map(square => {
+  const items = squares.map(square => {
     return (
-      <Box key={square.id} on={square.on} handleClick={toggle} />
+      <Box key={square.id} id={square.id} on={square.on} toggle={toggle} />
     )
   })
 
